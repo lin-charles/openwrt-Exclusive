@@ -15,7 +15,7 @@ sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-SE'/g" ./package/base-files/files
 # curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 curl -fsSL  https://raw.githubusercontent.com/firkerword/KPR/main/logo.jpg > .package/luci-app-serverchan/root/usr/bin/serverchan/api/logo.jpg
 # Modify default IP
-#sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.5.1/g' package/base-files/files/bin/config_generate
 rm -rf ./package/lean/luci-app-qbittorrent
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/luci-app-serverchan
@@ -23,3 +23,7 @@ rm -rf ./feeds/packages/net/adguardhome
 rm -rf ./feeds/packages/net/https-dns-proxy
 rm -rf ./feeds/diy/openwrt-adguardhome
 svn co https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
+rm -rf package/lean/luci-theme-argon
+git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/' feeds/luci/collections/luci/Makefile
+git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
